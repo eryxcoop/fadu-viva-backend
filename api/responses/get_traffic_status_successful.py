@@ -149,7 +149,11 @@ class GetTrafficStatusSuccessful:
                                     }
                                 ]
                             }
-                        ]
+                        ],
+                        'mid': '420d330f-57f4-4d4f-94aa-db7c8db748a6',
+                        'LI': 'A47-02263',
+                        'DE': 'Avenida G Udaondo',
+                        'PBT': '2020-03-18T21:13:41Z'
                     }
                 ],
                 'TY': 'TMC',
