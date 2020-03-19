@@ -1,4 +1,5 @@
 from api.requesters.base import Requester
+from api.responses.get_traffic_status_successful import GetTrafficStatusSuccessful
 
 
 class ApiClient:
@@ -18,7 +19,11 @@ class ApiClient:
             'prox': "{},{},{}".format(fadu_latitude, fadu_longitude, zoom)
         }
 
-        response = self._requester.call(self.TRAFFIC_API_BASE_URL, query_params)
+        json_response = self._requester.call(self.TRAFFIC_API_BASE_URL, query_params)
+        traffic_status_response = GetTrafficStatusSuccessful(json_response)
+        print(traffic_status_response.get_status_for(main_street="Avenida Int Cantilo",
+                                                     first_crossing_street="Avenida Int Güiraldes",
+                                                     second_crossing_street="Avenida G Udaondo"))
 
     def get_todays_weather(self):
         pass
