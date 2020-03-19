@@ -15,7 +15,7 @@ class ApiClient:
         zoom = '200'
 
         query_params = {
-            'apiKey': "DRHQ1rruBXNyjozHG71CBFCvQXDYlz9h0BAVItNUTu0",
+            'apiKey': "",
             'prox': "{},{},{}".format(fadu_latitude, fadu_longitude, zoom)
         }
 
