@@ -2,7 +2,7 @@ from flask import Flask
 
 from api.api_client import ApiClient
 from routes import register_endpoints
-from settings import Config
+from settings import app_config
 
 api_client = ApiClient()
 api_client.get_traffic_status()
@@ -10,7 +10,7 @@ api_client.get_traffic_status()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(app_config)
     register_endpoints(app)
     return app
 
