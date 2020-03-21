@@ -1,5 +1,6 @@
 from api.requesters.base import Requester
 from api.responses.get_traffic_status_successful import GetTrafficStatusSuccessful
+from settings import app_config
 
 
 class ApiClient:
@@ -15,7 +16,7 @@ class ApiClient:
         zoom = '200'
 
         query_params = {
-            'apiKey': "",
+            'apiKey': app_config.HERE_API_KEY,
             'prox': "{},{},{}".format(fadu_latitude, fadu_longitude, zoom)
         }
 
