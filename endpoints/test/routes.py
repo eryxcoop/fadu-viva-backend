@@ -1,8 +1,11 @@
 import json
+
+from api.api_client import ApiClient
 from . import test
 
 
-@test.route('/endpoint-de-prueba', methods=['GET'])
-def users_list():
-    return json.dumps({'prueba': 'Prueba123'})
+@test.route('traffic-status', methods=['GET'])
+def get_traffic_status():
+    api_client = ApiClient()
+    return json.dumps({'status': api_client.get_traffic_status()})
 

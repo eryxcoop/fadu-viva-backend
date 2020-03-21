@@ -1,11 +1,7 @@
 from flask import Flask
 
-from api.api_client import ApiClient
 from routes import register_endpoints
 from settings import app_config
-
-api_client = ApiClient()
-api_client.get_traffic_status()
 
 
 def create_app():
