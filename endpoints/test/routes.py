@@ -7,5 +7,8 @@ from . import test
 @test.route('traffic-status', methods=['GET'])
 def get_traffic_status():
     api_client = ApiClient()
-    return json.dumps({'status': api_client.get_traffic_status()})
+    return json.dumps({
+        'object': {'status': api_client.get_traffic_status()},
+        'errors': []
+    })
 
