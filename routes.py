@@ -1,5 +1,5 @@
-from endpoints.test.routes import test
+from endpoints.routes.routes import routes
 
 
 def register_endpoints(app):
-    app.register_blueprint(test, url_prefix='/api/')
+    app.register_blueprint(routes, url_prefix='/api/')

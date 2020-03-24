@@ -1,4 +1,4 @@
-class GetTrafficStatusSuccessful:
+class GetTrafficStatusSuccessfulResponse:
     def __init__(self, json_response):
         self._traffic_data = self._build_traffic_data_from_json_response(json_response)
 
