@@ -1,9 +1,10 @@
-from api.requesters.base import Requester
-from api.responses.get_traffic_status_successful_response import GetTrafficStatusSuccessfulResponse
+from layers.interface.services.requesters.base import Requester
+from layers.interface.services.traffic_status.responses.get_traffic_status_successful_response import \
+    GetTrafficStatusSuccessfulResponse
 from settings import app_config
 
 
-class ApiClient:
+class TrafficStatusApiClient:
     TRAFFIC_API_BASE_URL = 'https://traffic.ls.hereapi.com/traffic/6.2/flow.json'
     WEATHER_API_BASE_URL = 'api.openweathermap.org/data/2.5/weather'
 

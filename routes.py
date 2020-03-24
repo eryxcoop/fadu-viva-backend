@@ -1,4 +1,4 @@
-from endpoints.routes.routes import routes
+from layers.interface.endpoints.routes import routes
 
 
 def register_endpoints(app):
