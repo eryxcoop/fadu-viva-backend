@@ -1,9 +1,9 @@
 from layers.interface.cache.clients import CacheClientFactory
-from layers.interface.services.requesters.base import Requester
+from layers.interface.requester.base import Requester
 
 
 class CacheRequester:
-    def __init__(self, expiration=0) -> None:
+    def __init__(self, expiration=60) -> None:
         self._requester = Requester()
         self._cache_client = CacheClientFactory().for_actual_environment()
         self._expiration = expiration
