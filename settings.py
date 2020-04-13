@@ -46,6 +46,8 @@ class DevelopmentConfig(Config):
     ENV = os.getenv("ENVIRONMENT")
     HERE_API_KEY = os.getenv('HERE_API_KEY')
     CACHE_SERVER = (os.getenv("CACHE_SERVER_HOST"), int(os.getenv("CACHE_SERVER_PORT")))
+    BSAS_TRANSPORT_API_CLIENT_ID = os.getenv('BSAS_TRANSPORT_API_CLIENT_ID')
+    BSAS_TRANSPORT_API_SECRET = os.getenv('BSAS_TRANSPORT_API_SECRET')
 
     @classmethod
     def is_correct_for(cls, environment_name):
