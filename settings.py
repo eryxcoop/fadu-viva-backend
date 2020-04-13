@@ -19,6 +19,14 @@ class Config:
 
         return DevelopmentConfig
 
+    @classmethod
+    def is_correct_for(cls, environment_name):
+        raise NotImplementedError
+
+    @classmethod
+    def get_cache_client(cls, cache_factory):
+        raise NotImplementedError
+
 
 class TestConfig(Config):
     TESTING = True
@@ -28,15 +36,24 @@ class TestConfig(Config):
     def is_correct_for(cls, environment_name):
         return environment_name == 'testing'
 
+    @classmethod
+    def get_cache_client(cls, cache_factory):
+        return cache_factory.null_client()
+
 
 class DevelopmentConfig(Config):
     DEBUG = True
     ENV = os.getenv("ENVIRONMENT")
     HERE_API_KEY = os.getenv('HERE_API_KEY')
+    CACHE_SERVER = (os.getenv("CACHE_SERVER_HOST"), int(os.getenv("CACHE_SERVER_PORT")))
 
     @classmethod
     def is_correct_for(cls, environment_name):
         return environment_name == 'development'
+
+    @classmethod
+    def get_cache_client(cls, cache_factory):
+        return cache_factory.memcached_client(server=cls.CACHE_SERVER)
 
 
 app_config = Config.for_actual_environment()
