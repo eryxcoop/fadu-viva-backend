@@ -7,7 +7,7 @@ from layers.interface.services.daylight_brightness.time_interval import TimeInte
 # TODO this should be replaced by a real service
 class BuenosAiresDaylightBrightnessApiClient:
     """
-    refer: https: // www.timeanddate.com / sun / argentina / buenos - aires
+    refer: https://www.timeanddate.com/sun/argentina/buenos-aires
     """
 
     def __init__(self) -> None:
