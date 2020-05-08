@@ -20,5 +20,5 @@ class NullCacheClient:
     def get(self, key, default=None):
         pass
 
-    def set(self, key, value, expiration=None):
+    def set(self, key, value, expire=None):
         pass

@@ -1,10 +1,16 @@
+from datetime import datetime
+
 from layers.domain.traffic_configuration.traffic_configuration import TrafficConfiguration
 from layers.interface.requester.cache_requester import RequesterUsingCachedResults, RequesterUpdatingCachedResults
 from layers.interface.services.buses_gps.api_client import BusesGPSApiClient
+from layers.interface.services.daylight_brightness.api_client import BuenosAiresDaylightBrightnessApiClient
 from layers.interface.services.traffic_status.api_client import TrafficStatusApiClient
 
 
 class ServicesProvider:
+    def get_daylight_brightness(self):
+        return BuenosAiresDaylightBrightnessApiClient().get_daylight_brightness_for(time_=datetime.now().time())
+
     def get_traffic_status_of(self, place):
         return self._traffic_status_of(place, RequesterUsingCachedResults())
 

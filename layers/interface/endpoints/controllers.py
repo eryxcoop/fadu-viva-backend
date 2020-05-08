@@ -14,12 +14,14 @@ class APIController(MethodView):
 class GetStatus(APIController):
     def get(self):
         services_provider = ServicesProvider()
+        daylight_brightness = services_provider.get_daylight_brightness()
         traffic_status = services_provider.get_traffic_status_of(AV_LUGONES)
         arriving_buses, departing_buses = services_provider.get_arriving_and_departing_buses_to(FADU)
 
         status_response_presenter = StatusResponsePresenter(traffic_status=traffic_status,
                                                             arriving_buses=arriving_buses,
-                                                            departing_buses=departing_buses)
+                                                            departing_buses=departing_buses,
+                                                            daylight_brightness=daylight_brightness)
 
         response = {
             'object': status_response_presenter.present(),
