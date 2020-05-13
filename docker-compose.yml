@@ -1,0 +1,34 @@
+version: "2"
+
+# todo: esto esta bien?
+#networks:
+#  web:
+##    external: true
+#    external: false
+
+services:
+  fadubackend:
+    build: .
+    container_name: fadu-backend
+    ports:
+      - 5000:5000
+#    # fixme: no se que estoy haciendo aca...
+#    volumes:
+#      - .:/app/
+#    restart: always
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=web"
+#      - "traefik.http.routers.fadubackend.rule=Host(`fadu-viva.eryx.co`)"
+#      - "traefik.http.routers.fadubackend.entrypoints=https"
+#      - "traefik.http.routers.fadubackend.tls.certresolver=dnschallenge"
+#      - "traefik.http.services.fadubackend.loadbalancer.server.port=5000"
+#      # apply the secure-headers middleware
+#      - "traefik.http.routers.fadubackend.middlewares=secure-headers"
+#    networks:
+#      - web
+    links:
+      - cache
+
+  cache:
+    image: memcached:1.6
