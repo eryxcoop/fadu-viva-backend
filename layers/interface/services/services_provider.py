@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from layers.domain.traffic_configuration.traffic_configuration import TrafficConfiguration
 from layers.interface.requester.cache_requester import RequesterUsingCachedResults, RequesterUpdatingCachedResults
@@ -9,7 +9,8 @@ from layers.interface.services.traffic_status.api_client import TrafficStatusApi
 
 class ServicesProvider:
     def get_daylight_brightness(self):
-        return BuenosAiresDaylightBrightnessApiClient().get_daylight_brightness_for(time_=datetime.now().time())
+        buenos_aires_time = datetime.now(tz=timezone(offset=-timedelta(hours=3))).time()
+        return BuenosAiresDaylightBrightnessApiClient().get_daylight_brightness_for(time_=buenos_aires_time)
 
     def get_traffic_status_of(self, place):
         return self._traffic_status_of(place, RequesterUsingCachedResults())
