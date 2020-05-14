@@ -7,12 +7,13 @@ WORKDIR /app
 ENV HOME /app
 ENV PATH "/app/.local/bin:${PATH}"
 
+COPY --chown=appuser ./requirements /app/requirements
+RUN pip install --no-cache-dir -r ./requirements/requirements.txt
 RUN pip install --no-cache-dir waitress
 
 COPY --chown=appuser . /app/
 EXPOSE 5000
 USER appuser
 
-RUN pip install --no-cache-dir -r ./requirements/requirements.txt
 
 CMD ["waitress-serve", "--port=5000", "--call", "app:create_app"]

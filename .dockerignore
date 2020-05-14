@@ -1,0 +1,7 @@
+.env
+.env.example
+.idea
+venv/
+docker-compose.yml
+Dockerfile
+
