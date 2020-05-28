@@ -1,5 +1,9 @@
 version: "2"
 
+networks:
+  faduviva:
+    external: true
+
 services:
   fadubackend:
     build: .
@@ -11,6 +15,10 @@ services:
     # restart: always # for production this is useful
     depends_on:
       - cache
+    networks:
+      - faduviva
 
   cache:
     image: memcached:1.6
+    networks:
+      - faduviva
