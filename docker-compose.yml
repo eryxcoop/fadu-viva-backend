@@ -8,15 +8,22 @@ services:
   fadubackend:
     build: .
     container_name: fadu-backend
-    ports:
-      - 5000:5000
     env_file:
       - .env
-    # restart: always # for production this is useful
+    restart: always # for production this is useful
     depends_on:
       - cache
     networks:
       - faduviva
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=faduviva"
+      - "traefik.http.routers.backend.rule=Host(`fadu-viva.eryx.co`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.entrypoints=https"
+      - "traefik.http.routers.backend.tls=true"
+      - "traefik.http.routers.backend-insecure.rule=Host(`fadu-viva.eryx.co`) && Path(`/api`)"
+      - "traefik.http.routers.backend-insecure.entrypoints=http"
+      - "traefik.http.services.backend.loadbalancer.server.port=5000"
 
   cache:
     image: memcached:1.6
