@@ -30,3 +30,10 @@ services:
     command: ["-I", "10m"]
     networks:
       - faduviva
+
+  periodictasks:
+    build: ./periodic_tasks
+    container_name: periodic-tasks
+    restart: always # for production this is useful
+    networks:
+      - faduviva

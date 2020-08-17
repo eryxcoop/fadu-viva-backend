@@ -1,0 +1,2 @@
+# cron task to run each minute
+* * * * * root /bin/bash /home/update_status.sh >> /var/log/cron.log 2>&1
