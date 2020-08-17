@@ -18,10 +18,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=faduviva"
-      - "traefik.http.routers.backend.rule=Host(`fadu-viva.eryx.co`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.rule=Host(`fadu-viva.eryx.co`) || Host(`localhost`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=https"
       - "traefik.http.routers.backend.tls=true"
-      - "traefik.http.routers.backend-insecure.rule=Host(`fadu-viva.eryx.co`) && Path(`/api`)"
+      - "traefik.http.routers.backend-insecure.rule=Host(`fadu-viva.eryx.co`) || Host(`localhost`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend-insecure.entrypoints=http"
       - "traefik.http.services.backend.loadbalancer.server.port=5000"
 
