@@ -27,5 +27,6 @@ services:
 
   cache:
     image: memcached:1.6
+    command: ["-I", "10m"]
     networks:
       - faduviva
