@@ -7,7 +7,7 @@ metadata:
   name: fadubackend
 spec:
   progressDeadlineSeconds: 2147483647
-  replicas: 10
+  replicas: 1
   revisionHistoryLimit: 2147483647
   selector:
     matchLabels:
@@ -38,10 +38,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: BSAS_TRANSPORT_API_CLIENT_ID
-          value:
-        - name: BSAS_TRANSPORT_API_SECRET
-          value:
         - name: CACHE_SERVER_HOST
           value: cache
         - name: CACHE_SERVER_PORT
@@ -50,13 +46,14 @@ spec:
           value: "True"
         - name: ENVIRONMENT
           value: development
-        - name: HERE_API_KEY
-          value:
-        image: containous/whoami
+        envFrom:
+          - secretRef:
+              name: fadubackend-secret
+        image: eryxcoop/fadu-viva-backend
         imagePullPolicy: Always
         name: fadu-backend
         ports:
-        - containerPort: 80
+        - containerPort: 5000
           protocol: TCP
         resources: {}
         terminationMessagePath: /dev/termination-log
