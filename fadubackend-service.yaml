@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+    traefik.docker.network: faduviva
+    traefik.enable: "true"
+    traefik.http.routers.backend-insecure.entrypoints: http
+    traefik.http.routers.backend-insecure.rule: (Host(`fadu-viva.eryx.co`) || Host(`localhost`))
+      && PathPrefix(`/api`)
+    traefik.http.routers.backend.entrypoints: https
+    traefik.http.routers.backend.rule: (Host(`fadu-viva.eryx.co`) || Host(`localhost`))
+      && PathPrefix(`/api`)
+    traefik.http.routers.backend.tls: "true"
+    traefik.http.services.backend.loadbalancer.server.port: "5000"
+  creationTimestamp: null
+  labels:
+    io.kompose.service: fadubackend
+  name: fadubackend
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 80
+  selector:
+    io.kompose.service: fadubackend
+status:
+  loadBalancer: {}

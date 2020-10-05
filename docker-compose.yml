@@ -24,6 +24,8 @@ services:
       - "traefik.http.routers.backend-insecure.rule=(Host(`fadu-viva.eryx.co`) || Host(`localhost`)) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend-insecure.entrypoints=http"
       - "traefik.http.services.backend.loadbalancer.server.port=5000"
+    ports:
+      - 5000:5000
 
   cache:
     image: memcached:1.6
